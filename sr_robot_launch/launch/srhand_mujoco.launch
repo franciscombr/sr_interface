@@ -36,7 +36,7 @@
   <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'lh_hand_e_plus')" name="mujoco_model_filename" default="$(find sr_description)/mujoco_models/sr_hand_e_plus_left_environment.xml"/>
   
   <!-- ik solver possible values sr_hand_kinematics/trac_ik/bio_ik -->
-  <arg name="hand_ik_solver" default="sr_hand_kinematics"/>
+  <arg name="hand_ik_solver" default="bio_ik"/>
   
   
   <rosparam param="robot_description" command="load" file="$(arg robot_description)"/>
@@ -82,7 +82,7 @@
   <group if="$(arg hand_ctrl)">
     <group unless="$(arg grasp_controller)">
       <rosparam command="load" file="$(find sr_description)/mujoco_models/$(arg hand_id)_trajectory_controller.yaml"/>
-        <node name="spawn_hand_controller" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg hand_id)_trajectory_controller"/>
+        <node name="spawn_hand_controller" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg hand_id)_trajectory_controller $(arg hand_id)_wr_trajectory_controller"/>
     </group>
     <group if="$(arg grasp_controller)">
       <node name="$(arg hand_id)_controller_spawner" pkg="sr_utilities" type="controller_spawner.py" output="screen">

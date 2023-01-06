@@ -138,11 +138,10 @@ def generate_real_controllers(robot, robot_config, output_path=None, ns_=None):
                         wrist_joints.append(name)
                     else:
                         hand_joints.append(name)
-            hand_joints=hand_joints+wrist_joints
             output_str += generate_follow_joint_trajectory_controller(manipulator.hand.prefix, hand_joints)
-            #if wrist_joints:
-            #    output_str += generate_follow_joint_trajectory_controller(manipulator.hand.prefix + 'wr_', wrist_joints)
-            #removed separate wrist controller as these joints are included in rh_trajectory_controller
+            if wrist_joints:
+                output_str += generate_follow_joint_trajectory_controller(manipulator.hand.prefix + 'wr_', wrist_joints)
+
     # load on param server or output to file
     upload_output_params(output_str, output_path, ns_)
 

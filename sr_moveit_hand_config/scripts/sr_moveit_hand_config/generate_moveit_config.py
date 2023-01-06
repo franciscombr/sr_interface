@@ -176,15 +176,10 @@ def generate_real_controllers(robot, output_path=None, ns_=None):
                 wrist_joints.append(name)
             else:
                 hand_joints.append(name)
-    hand_joints=hand_joints+wrist_joints
-    #output_str += generate_follow_joint_trajectory_controller(prefix + 'wr_', wrist_joints)
-    #if wrist_joints:
-    #    output_str += generate_follow_joint_trajectory_controller(prefix + 'wr_', hand_joints)
     output_str += generate_follow_joint_trajectory_controller(prefix, hand_joints)
-    #if wrist_joints:
-    #    output_str += generate_follow_joint_trajectory_controller(prefix + 'wr_', wrist_joints)
+    if wrist_joints:
+        output_str += generate_follow_joint_trajectory_controller(prefix + 'wr_', wrist_joints)
     # load on param server or output to file
-    rospy.logerr(output_str)
     upload_output_params(output_str, output_path, ns_)
     return output_str
 

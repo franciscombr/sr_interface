@@ -325,7 +325,10 @@ def generate_kinematics(robot, template_path="kinematics_template.yaml",
     for group in robot.groups:
         kinematics_config = None
         # strip prefix if any
-        group_name = group.name[len(prefix):]
+        if group.name!="right_hand":
+            group_name = group.name[len(prefix):]
+        else:
+            group_name = group.name
         # check for fixed joint for this group
         if is_fixed.get(group_name):
             if group_name in yamldoc_fixed_joint:

@@ -10,7 +10,7 @@
   <!-- Set to true to allow planning trajectories-->
   <arg name="use_moveit" default="true"/>
   <!-- Set to false if you want to start without guis -->
-  <arg name="gui" default="true"/>
+  <arg name="gui" default="false"/>
   <!-- Set to true if you want to use grasp controller -->
   <arg name="grasp_controller" default="false"/>
   <!-- The robot state publisher publishing frequency  -->
@@ -22,8 +22,8 @@
   <arg name="key_path" default="/home/user/mjpro150/bin/mjkey.txt"/>
 
   <!-- Loads the robot description -->
-  <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'rh_hand_e')" name="robot_urdf_filename" default="sr_hand_e_test"/>
-  <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'rh_hand_e_plus')" name="robot_urdf_filename" default="sr_hand_e_test"/>
+  <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'rh_hand_e')" name="robot_urdf_filename" default="shadowhand_motor"/>
+  <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'rh_hand_e_plus')" name="robot_urdf_filename" default="shadowhand_motor"/>
   <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'lh_hand_e')" name="robot_urdf_filename" default="shadowhand_motor_left"/>
   <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'lh_hand_e_plus')" name="robot_urdf_filename" default="shadowhand_motor_plus_left"/>
   <arg if="$(eval arg('hand_id') + '_' + arg('hand_type') == 'rh_hand_g')" name="robot_urdf_filename" default="shadowhand_lite"/>

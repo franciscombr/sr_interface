@@ -21,11 +21,15 @@
   <arg name="rviz_config_file" default="$(find sr_multi_moveit_config)/launch/moveit.rviz"/>
 
   <arg name="trajectory_controllers_list" default="[]"/>
+  
+  <arg name="robot_config_file" default="$(find sr_multi_moveit_config)/config/robot_configs/right_sh_ur10.yaml"/>
+
+  <param name="robot_config_file" value="$(arg robot_config_file)"/>
 
   <node name="conditional_delayed_rostool_planning_context" pkg="sr_utilities_common" type="conditional_delayed_rostool.py" output="screen">
     <param name="package_name" value="sr_multi_moveit_config" />
     <param name="executable_name" value="planning_context.launch" />
-    <rosparam param="args_from_param_list">[robot_config_file]</rosparam>
+    <rosparam param="args_from_param_list">[/robot_config_file]</rosparam>
     <param name="launch_args_list" value="hand_ik_solver_path:=$(arg hand_ik_solver_path)"/>
   </node>
 

@@ -59,7 +59,7 @@ def upload_output_params(upload_str, output_path=None, upload=True, ns_=None):
         for params, namespace in paramlist:
             rosparam.upload_params(namespace, params)
     if output_path is not None:
-        file_writer = open(output_path, "wb")
+        file_writer = open(output_path, "w")
         file_writer.write(upload_str)
         file_writer.close()
 

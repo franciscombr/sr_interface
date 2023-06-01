@@ -11,7 +11,12 @@
   <arg name="hand_ik_solver" default="sr_hand_kinematics"/>
   <arg name="hand_ik_solver_path" value="$(find sr_moveit_hand_config)/config/kinematics_template.yaml" if="$(eval hand_ik_solver == 'sr_hand_kinematics')" />
   <arg name="hand_ik_solver_path" value="$(find sr_moveit_hand_config)/config/kinematics_$(arg hand_ik_solver)_template.yaml" unless="$(eval hand_ik_solver == 'sr_hand_kinematics')" />
-
+  
+  <arg name="arm_ik_solver" default="bio_ik"/>
+  <group if="$(eval arm_ik_solver=='bio_ik')">
+    <param name="generate_load_moveit_config/kinematics_file_name" value="kinematics_bio_ik.yaml"/>
+    <param name="generate_load_moveit_config/kinematics_extra_file_name" value="kinematics_extra_groups_bio_ik.yaml"/>
+  </group>
   <!-- The name of the rviz config file to load -->
   <arg name="rviz_config_file" default="$(find sr_multi_moveit_config)/launch/moveit.rviz"/>
 
